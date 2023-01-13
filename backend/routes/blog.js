@@ -17,7 +17,7 @@ router.post('/', createBlog);
 router.get('/', getBlogs);
 
 //get a single blog
-router.get('/:id', getBlogs);
+router.get('/:id', getBlog);
 
 //delete a blog
 router.delete('/:id', deleteBlog);

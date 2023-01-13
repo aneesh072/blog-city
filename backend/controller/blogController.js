@@ -22,7 +22,7 @@ const createBlog = async (req, res) => {
 //get all blogs
 const getBlogs = async (req, res) => {
   const blogs = await Blog.find({}).sort({ createdAt: -1 });
-  req.status(200).json(blogs);
+  res.status(200).json(blogs);
 };
 
 //get a single blog
