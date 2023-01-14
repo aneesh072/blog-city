@@ -20,6 +20,10 @@ const BlogSchema = new Schema(
       type: String,
       required: false,
     },
+    imageUrl: {
+      type: String,
+      required: false,
+    },
   },
   { timestamps: true }
 );

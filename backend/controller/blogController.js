@@ -4,7 +4,7 @@ const Blog = require('../model/BlogModel');
 
 //create blog
 const createBlog = async (req, res) => {
-  const { title, description, author, category } = req.body;
+  const { title, description, author, category, imageUrl } = req.body;
 
   try {
     const blog = await Blog.create({
@@ -12,6 +12,7 @@ const createBlog = async (req, res) => {
       description,
       category,
       author,
+      imageUrl
     });
     res.status(200).json(blog);
   } catch (error) {
