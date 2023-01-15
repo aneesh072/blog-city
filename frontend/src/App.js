@@ -8,8 +8,8 @@ import Home from './pages/Home';
 const App = () => {
   return (
     <Container>
-      <Navbar />
       <BrowserRouter>
+        <Navbar />
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/add-post" element={<BlogForm />}></Route>

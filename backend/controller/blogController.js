@@ -1,18 +1,18 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
 const Blog = require('../model/BlogModel');
 
 //create blog
 const createBlog = async (req, res) => {
   const { title, description, author, category, imageUrl } = req.body;
-
   try {
     const blog = await Blog.create({
       title,
       description,
-      category,
       author,
-      imageUrl
+      category,
+      imageUrl,
     });
     res.status(200).json(blog);
   } catch (error) {
