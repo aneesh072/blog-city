@@ -7,15 +7,13 @@ import Home from './pages/Home';
 
 const App = () => {
   return (
-    <Container>
-      <BrowserRouter>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/add-post" element={<BlogForm />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </Container>
+    <BrowserRouter>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />}></Route>
+        <Route path="/add-post" element={<BlogForm />}></Route>
+      </Routes>
+    </BrowserRouter>
   );
 };
 
