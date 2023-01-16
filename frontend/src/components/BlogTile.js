@@ -4,9 +4,9 @@ const BlogTile = ({ blog }) => {
   return (
     <div className="blog">
       <img src={blog.imageUrl} alt="  " />
-      <div class="card-body">
-        <h4 class="card-title">{blog.title}</h4>
-        <p class="card-text">{blog.description}</p>
+      <div className="card-body">
+        <h4 className="card-title">{blog.title}</h4>
+        <p className="card-text">{blog.description}</p>
         <span>{blog.category}</span>
       </div>
     </div>

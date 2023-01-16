@@ -2,9 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import BlogTile from '../components/BlogTile';
 import Pagination from 'react-paginate';
+import { useBlogContext } from '../hooks/useBlogContext';
 
 const Home = () => {
-  const [blogs, setBlogs] = useState([]);
+  const { blogs, dispatch } = useBlogContext();
+
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage] = useState(12);
 
@@ -22,13 +24,12 @@ const Home = () => {
       const response = await axios.get('/api/blogs').then((res) => {
         return res.data;
       });
-      setBlogs(response);
+
+      dispatch({ type: 'SET_BLOG', payload: response });
     };
 
     fetchBlogs();
-  }, []);
-
-  console.log(blogs);
+  }, [dispatch]);
 
   return (
     <div className="details">
