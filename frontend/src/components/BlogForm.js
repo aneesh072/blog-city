@@ -43,58 +43,49 @@ const BlogForm = () => {
   };
 
   return (
-    <Box
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '50%' },
-      }}
-      marginTop="50px"
-      noValidate
-    >
+    <div className="add-blog-form">
       <h1 style={{ textAlign: 'center' }}>Add Post</h1>
-      <Stack justifyContent="center" alignItems="center" spacing={2}>
-        <TextField
+      <form>
+        <label>Title: </label>
+        <input
           type="text"
-          id="filled-basic"
-          label="Title..."
-          variant="filled"
+          placeholder="Title.."
           value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <TextField
-          type="text"
-          id="filled-multiline-static"
-          label="Description..."
-          multiline
-          rows={12}
-          variant="filled"
-          size="small"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        />
-        <TextField
-          type="text"
-          id="filled-basic"
-          label="Category / Tag"
-          variant="filled"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-        />
-        <Typography display="flex">Add Image</Typography>
-        <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-
-        <Button
-          variant="contained"
-          sx={{
-            p: 2,
-            width: '50%',
+          onChange={(e) => {
+            setTitle(e.target.value);
           }}
-          onClick={postDetails}
-        >
-          Upload
-        </Button>
-      </Stack>
-    </Box>
+        />
+
+        <label>Description:</label>
+        <textarea
+          cols="70"
+          rows="10"
+          value={description}
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
+        ></textarea>
+
+        <label>Category</label>
+        <input
+          type="text"
+          placeholder="Category..."
+          value={category}
+          onChange={(e) => {
+            setCategory(e.target.value);
+          }}
+        />
+
+        <label>Add Image</label>
+        <input
+          type="file"
+          onChange={(e) => setImage(e.target.files[0])}
+          id="add-file-button"
+        />
+      </form>
+
+      <button onClick={postDetails}>Upload</button>
+    </div>
   );
 };
 

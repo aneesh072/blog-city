@@ -10,14 +10,14 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage] = useState(12);
 
+    const indexOfLastData = currentPage * perPage;
+    const indexOfFirstData = indexOfLastData - perPage;
+    const currentData =  blogs.slice(indexOfFirstData, indexOfLastData);
+
   const handlePageClick = (data) => {
     let selected = data.selected;
     setCurrentPage(selected + 1);
   };
-
-  const indexOfLastData = currentPage * perPage;
-  const indexOfFirstData = indexOfLastData - perPage;
-  const currentData = blogs.slice(indexOfFirstData, indexOfLastData);
 
   useEffect(() => {
     const fetchBlogs = async () => {
@@ -30,6 +30,8 @@ const Home = () => {
 
     fetchBlogs();
   }, [dispatch]);
+
+
 
   return (
     <div className="details">
