@@ -4,6 +4,7 @@ const express = require('express');
 const cors = require('cors');
 
 const blogRoutes = require('./routes/blog');
+const userRoutes = require('./routes/user');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(cors());
 
 //routes
 app.use('/api/blogs', blogRoutes);
+app.use('/api/user', userRoutes);
 
 mongoose.set('strictQuery', false);
 
