@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 const BlogPost = () => {
   const [blog, setBlog] = useState({});
   const params = useParams();
+  console.log(params);
 
   useEffect(() => {
     const fetchBlog = async () => {
@@ -14,9 +15,6 @@ const BlogPost = () => {
     fetchBlog();
   }, [params.blogId]);
 
-  const input = '# This is a header \n\n And this is aparagraph';
-
-  console.log(blog);
   return (
     <div className="blog-post">
       <h1>{blog.title}</h1>

@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 body {
   background: #bdd882;
   margin: 0 auto;
@@ -277,4 +278,76 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
+}
+
+.signup {
+  background-image: url('./assets/lav.jpeg');
+  background-blend-mode: luminosity;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.signup h1 {
+  font-size: 8vh;
+  color: rgb(0, 0, 0);
+  font-family: 'Lobster', cursive;
+  position: fixed;
+  top: 0;
+}
+
+.signup form {
+  background-color: #c2c3ef;
+  height: 450px;
+  width: 400px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Times New Roman', Times, serif;
+  font-size: 20px;
+  gap: 10px;
+  position: fixed;
+}
+
+form .credits {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+.credits input {
+  width: 80%;
+  height: 30px;
+  padding: 8px;
+  border-radius: 20px;
+  border: none;
+}
+
+.signup button {
+  padding: 10px;
+  background: #ffd2da;
+  color: black;
+  font-size: 20px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.option {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 16px;
+  text-align: center;
 }
