@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Signup from './pages/Signup';
 import Login from './pages/Login';
 import { useAuthContext } from './hooks/useAuthContext';
+import UserBlogList from './components/UserBlogList';
 
 const App = () => {
   const { user } = useAuthContext();
@@ -35,6 +36,11 @@ const App = () => {
         <Route
           path="/blog/:blogId"
           element={user ? <BlogPost /> : <Navigate to="/login" />}
+        ></Route>
+
+        <Route
+          path="/userBlog"
+          element={user ? <UserBlogList /> : <Navigate to="/login" />}
         ></Route>
         <Route path="/" element={<Home />}></Route>
       </Routes>

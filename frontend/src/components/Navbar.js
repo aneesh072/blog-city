@@ -1,7 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useParams } from 'react-router-dom';
+import { useLogout } from '../hooks/useLogout';
 const Navbar = () => {
+  const { logout } = useLogout();
+
+  const handleLogout = () => {
+    logout();
+  };
+
   return (
     <div className="container">
       <Link id="logo" to="/">
@@ -9,8 +15,9 @@ const Navbar = () => {
       </Link>
       <nav>
         <div className="actions">
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Signup</Link>
+          <button onClick={handleLogout}>Logout</button>
+          <Link to="/add-post">Add Post</Link>
+          <Link to="/userBlog">My Blogs</Link>
         </div>
       </nav>
     </div>

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
-import BlogTile from '../components/BlogTile';
+import UserBlogTile from './UserBlogTile';
 import Pagination from 'react-paginate';
 import { useBlogContext } from '../hooks/useBlogContext';
 import { useAuthContext } from '../hooks/useAuthContext';
 
-const Home = () => {
+const UserBlogList = () => {
   const { blogs, dispatch } = useBlogContext();
 
   const { user } = useAuthContext();
@@ -24,12 +24,13 @@ const Home = () => {
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      const response = await fetch('/api/blogs', {
+      const response = await fetch('/api/blogs/myBlogs', {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
       });
       const json = await response.json();
+      console.log(response);
       if (response.ok) {
         dispatch({ type: 'SET_BLOG', payload: json });
       }
@@ -37,7 +38,7 @@ const Home = () => {
     if (user) {
       fetchBlogs();
     }
-  }, [user, dispatch, blogs, currentPage, perPage]);
+  }, [user, dispatch]);
 
   return (
     <div className="details">
@@ -45,9 +46,12 @@ const Home = () => {
         <input type="text" placeholder="Search..." />
         <button>Search</button>
       </div>
+
       <div className="blog-list">
         {currentData &&
-          currentData.map((blog) => <BlogTile blog={blog} key={blog._id} />)}
+          currentData.map((blog) => (
+            <UserBlogTile blog={blog} key={blog._id} />
+          ))}
       </div>
       <Pagination
         previousLabel={'Previous'}
@@ -66,4 +70,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default UserBlogList;

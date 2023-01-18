@@ -14,8 +14,6 @@ const Login = () => {
     await login(email, password);
   };
 
-
-
   return (
     <div className="signup">
       <h1>Blog - City</h1>

@@ -7,12 +7,14 @@ const Blog = require('../model/BlogModel');
 const createBlog = async (req, res) => {
   const { title, description, author, category, imageUrl } = req.body;
   try {
+    const user_id = req.user._id;
     const blog = await Blog.create({
       title,
       description,
       author,
       category,
       imageUrl,
+      user_id,
     });
     res.status(200).json(blog);
   } catch (error) {
@@ -23,6 +25,13 @@ const createBlog = async (req, res) => {
 //get all blogs
 const getBlogs = async (req, res) => {
   const blogs = await Blog.find({}).sort({ createdAt: -1 });
+  res.status(200).json(blogs);
+};
+
+//get blogs posted by user
+const getMyBlogs = async (req, res) => {
+  const user_id = req.user._id;
+  const blogs = await Blog.find({ user_id }).sort({ createdAt: -1 });
   res.status(200).json(blogs);
 };
 
@@ -73,4 +82,11 @@ const updateBlog = async (req, res) => {
   res.status(200).json(blog);
 };
 
-module.exports = { createBlog, getBlog, getBlogs, deleteBlog, updateBlog };
+module.exports = {
+  createBlog,
+  getBlog,
+  getBlogs,
+  deleteBlog,
+  updateBlog,
+  getMyBlogs,
+};

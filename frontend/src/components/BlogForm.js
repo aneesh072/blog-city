@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import { TextField, Box, Typography } from '@mui/material';
-import Button from '@mui/material/Button';
-import { Stack } from '@mui/system';
+import React, { useEffect, useState } from 'react';
+import { useAuthContext } from '../hooks/useAuthContext';
+import { useBlogContext } from '../hooks/useBlogContext';
 
 const BlogForm = () => {
   const [title, setTitle] = useState('');
@@ -10,9 +9,11 @@ const BlogForm = () => {
   const [author, setAuthor] = useState('');
   const [image, setImage] = useState('');
   const [imageUrl, setImageUrl] = useState('');
+  const { user } = useAuthContext();
+  const { dispatch } = useBlogContext();
 
   const postDetails = async (e) => {
-    e.preventDefault();
+    /*   e.preventDefault(); */
 
     const data = new FormData();
     data.append('file', image);
@@ -38,9 +39,11 @@ const BlogForm = () => {
       body: JSON.stringify(blog),
       headers: {
         'Content-Type': 'application/json',
+        Authorization: `Bearer ${user.token}`,
       },
     });
   };
+
 
   return (
     <div className="add-blog-form">

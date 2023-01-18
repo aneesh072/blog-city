@@ -6,6 +6,7 @@ const {
   getBlogs,
   deleteBlog,
   updateBlog,
+  getMyBlogs,
 } = require('../controller/blogController');
 
 const requireAuth = require('../middleware/requireAuth');
@@ -20,6 +21,9 @@ router.post('/', createBlog);
 
 //get all blogs
 router.get('/', getBlogs);
+
+//get user posted blog
+router.get('/myBlogs', getMyBlogs);
 
 //get a single blog
 router.get('/:id', getBlog);

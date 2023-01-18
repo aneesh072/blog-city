@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { useParams } from 'react-router';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const BlogPost = () => {
   const [blog, setBlog] = useState({});
   const params = useParams();
+  const { user } = useAuthContext();
   console.log(params);
 
   useEffect(() => {
     const fetchBlog = async () => {
-      const response = await fetch('/api/blogs/' + params.blogId);
+      const response = await fetch('/api/blogs/' + params.blogId, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
       const json = await response.json();
       setBlog(json);
     };
     fetchBlog();
-  }, [params.blogId]);
+  }, [params.blogId, user]);
 
   return (
     <div className="blog-post">
