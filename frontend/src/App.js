@@ -1,4 +1,3 @@
-import { Container } from '@mui/system';
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import BlogForm from './components/BlogForm';
@@ -6,21 +5,38 @@ import BlogPost from './components/BlogPost';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import Signup from './pages/Signup';
-import { AuthContextProvider } from './context/AuthContext';
 import Login from './pages/Login';
+import { useAuthContext } from './hooks/useAuthContext';
 
 const App = () => {
-  const name = '';
+  const { user } = useAuthContext();
+
   return (
     <BrowserRouter>
-      {name ? <Navbar /> : null}
+      {user ? <Navbar /> : null}
       <Routes>
-        <Route path="/signup" element={<Signup />}></Route>
-        <Route path="/login" element={<Login />}></Route>
+        <Route
+          path="/"
+          element={user ? <Home /> : <Navigate to="/login" />}
+        ></Route>
+        <Route
+          path="/signup"
+          element={!user ? <Signup /> : <Navigate to="/" />}
+        ></Route>
+        <Route
+          path="/login"
+          element={!user ? <Login /> : <Navigate to="/" />}
+        ></Route>
 
+        <Route
+          path="/add-post"
+          element={user ? <BlogForm /> : <Navigate to="/login" />}
+        ></Route>
+        <Route
+          path="/blog/:blogId"
+          element={user ? <BlogPost /> : <Navigate to="/login" />}
+        ></Route>
         <Route path="/" element={<Home />}></Route>
-        <Route path="/add-post" element={<BlogForm />}></Route>
-        <Route path="/blog/:blogId" element={<BlogPost />}></Route>
       </Routes>
     </BrowserRouter>
   );

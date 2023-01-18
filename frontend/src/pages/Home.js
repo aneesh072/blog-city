@@ -3,16 +3,19 @@ import axios from 'axios';
 import BlogTile from '../components/BlogTile';
 import Pagination from 'react-paginate';
 import { useBlogContext } from '../hooks/useBlogContext';
+import { useAuthContext } from '../hooks/useAuthContext';
 
 const Home = () => {
   const { blogs, dispatch } = useBlogContext();
 
+  const { user } = useAuthContext();
+
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage] = useState(12);
 
-    const indexOfLastData = currentPage * perPage;
-    const indexOfFirstData = indexOfLastData - perPage;
-    const currentData =  blogs.slice(indexOfFirstData, indexOfLastData);
+  const indexOfLastData = currentPage * perPage;
+  const indexOfFirstData = indexOfLastData - perPage;
+  const currentData = blogs.slice(indexOfFirstData, indexOfLastData);
 
   const handlePageClick = (data) => {
     let selected = data.selected;
@@ -21,17 +24,21 @@ const Home = () => {
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      const response = await axios.get('/api/blogs').then((res) => {
-        return res.data;
+      const response = await fetch('/api/blogs', {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
       });
+      const json = await response.json();
 
-      dispatch({ type: 'SET_BLOG', payload: response });
+      if (response.ok) {
+        dispatch({ type: 'SET_BLOG', payload: json });
+      }
     };
-
-    fetchBlogs();
-  }, [dispatch]);
-
-
+    if (user) {
+      fetchBlogs();
+    }
+  }, [dispatch, user]);
 
   return (
     <div className="details">
