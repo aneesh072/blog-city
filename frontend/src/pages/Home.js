@@ -13,6 +13,8 @@ const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [perPage] = useState(12);
 
+  const [query, setQuery] = useState('');
+
   const indexOfLastData = currentPage * perPage;
   const indexOfFirstData = indexOfLastData - perPage;
   const currentData = blogs.slice(indexOfFirstData, indexOfLastData);
@@ -42,12 +44,25 @@ const Home = () => {
   return (
     <div className="details">
       <div className="search">
-        <input type="text" placeholder="Search..." />
+        <input
+          type="text"
+          placeholder="Search..."
+          onChange={(e) => setQuery(e.target.value)}
+        />
         <button>Search</button>
       </div>
       <div className="blog-list">
-        {currentData &&
-          currentData.map((blog) => <BlogTile blog={blog} key={blog._id} />)}
+        {currentData
+          .filter((post) => {
+            if (query === '') {
+              return post;
+            } else if (post.title.toLowerCase().includes(query.toLowerCase())) {
+              return post;
+            }
+          })
+          .map((blog) => (
+            <BlogTile blog={blog} key={blog._id} />
+          ))}
       </div>
       <Pagination
         previousLabel={'Previous'}
