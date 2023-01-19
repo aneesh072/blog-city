@@ -8,6 +8,8 @@ import Signup from './pages/Signup';
 import Login from './pages/Login';
 import { useAuthContext } from './hooks/useAuthContext';
 import UserBlogList from './components/UserBlogList';
+import UpdateBlog from './components/UpdateBlog';
+import Users from './pages/Users';
 
 const App = () => {
   const { user } = useAuthContext();
@@ -42,7 +44,15 @@ const App = () => {
           path="/userBlog"
           element={user ? <UserBlogList /> : <Navigate to="/login" />}
         ></Route>
-        <Route path="/" element={<Home />}></Route>
+
+        <Route
+          path="/update-post/:blogId"
+          element={user ? <UpdateBlog /> : <Navigate to="/login" />}
+        ></Route>
+        <Route
+          path="/users"
+          element={user ? <Users /> : <Navigate to="/login" />}
+        ></Route>
       </Routes>
     </BrowserRouter>
   );

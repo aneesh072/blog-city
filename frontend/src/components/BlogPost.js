@@ -6,7 +6,6 @@ const BlogPost = () => {
   const [blog, setBlog] = useState({});
   const params = useParams();
   const { user } = useAuthContext();
-  console.log(params);
 
   useEffect(() => {
     const fetchBlog = async () => {

@@ -32,7 +32,6 @@ const UserBlogList = () => {
         },
       });
       const json = await response.json();
-      console.log(response);
       if (response.ok) {
         dispatch({ type: 'SET_BLOG', payload: json });
       }

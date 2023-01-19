@@ -41,9 +41,12 @@ const UserBlogTile = ({ blog }) => {
           <p className="card-text">{blog.description}</p>
           <span>{blog.category}</span>
           <div className="blog-action">
-            <button id="update">
-              <MdOutlineSystemUpdateAlt />
-            </button>
+            <Link to={`/update-post/${blog._id}`}>
+              <button id="update">
+                <MdOutlineSystemUpdateAlt />
+              </button>
+            </Link>
+
             <button id="delete" onClick={handleDelete}>
               <BsFillTrashFill />
             </button>

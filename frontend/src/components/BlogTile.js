@@ -13,6 +13,7 @@ const BlogTile = ({ blog }) => {
           <h4 className="card-title">{blog.title}</h4>
           <p className="card-text">{blog.description}</p>
           <span>{blog.category}</span>
+          <h2>{blog.author}</h2>
         </div>
       </div>
     </Link>

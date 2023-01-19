@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useBlogContext } from '../hooks/useBlogContext';
+import { useNavigate, Link, useParams } from 'react-router-dom';
 
-const BlogForm = () => {
+const UpdateBlog = () => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
   const [category, setCategory] = useState('');
@@ -9,39 +11,39 @@ const BlogForm = () => {
   const [image, setImage] = useState('');
   const [imageUrl, setImageUrl] = useState('');
   const { user } = useAuthContext();
+  const { dispatch } = useBlogContext();
+
+  const navigate = useNavigate();
+  const params = useParams();
 
   useEffect(() => {
-    const fetchUsers = async () => {
-      const response = await fetch('/api/user/users', {
+    const fetchBlog = async () => {
+      const response = await fetch('/api/blogs/' + params.blogId, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
       });
+
       const json = await response.json();
-      json.map((names) => {
-        if (names.email === user.email) {
-          setAuthor(names.name);
-        }
-        return names;
-      });
+      if (response.ok) {
+        setTitle(json.title);
+        setDescription(json.description);
+        setCategory(json.category);
+        setImageUrl(json.imageUrl);
+      }
     };
     if (user) {
-      fetchUsers();
+      fetchBlog();
     }
-  }, [user]);
+  }, [params.blogId, dispatch, user]);
 
   const postDetails = async (e) => {
-    e.preventDefault();
-
     const data = new FormData();
     data.append('file', image);
     data.append('upload_preset', 'blog-city');
     data.append('cloud_name', 'dwuo1i1ob');
 
-    const blog = { title, description, author, category, imageUrl };
-
-    await (`https://api.cloudinary.com/v1_1/dwuo1i1ob/upload`,
-    {
+    fetch(`https://api.cloudinary.com/v1_1/dwuo1i1ob/upload`, {
       method: 'post',
       body: data,
     })
@@ -49,35 +51,26 @@ const BlogForm = () => {
       .then((data) => {
         setImageUrl(data.url);
       })
-      .then(
-        await fetch('/api/blogs', {
-          method: 'POST',
-          body: JSON.stringify(blog),
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${user.token}`,
-          },
-        })
-      )
       .catch((err) => {
         console.log(err);
       });
 
-    /*     const response = fetch('/api/blogs', {
+    const blog = { title, description, author, category, imageUrl };
+
+    fetch('/api/blogs', {
       method: 'POST',
       body: JSON.stringify(blog),
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${user.token}`,
       },
-    }); */
+    });
+    navigate('/userBlog');
   };
-
-  console.log(image, imageUrl);
 
   return (
     <div className="add-blog-form">
-      <h1 style={{ textAlign: 'center' }}>Add Post</h1>
+      <h1 style={{ textAlign: 'center' }}>Update Post</h1>
       <form>
         <label>Title: </label>
         <input
@@ -117,9 +110,9 @@ const BlogForm = () => {
         />
       </form>
 
-      <button onClick={postDetails}>Upload</button>
+      <button onClick={postDetails}>Update</button>
     </div>
   );
 };
 
-export default BlogForm;
+export default UpdateBlog;

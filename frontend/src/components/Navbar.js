@@ -18,6 +18,7 @@ const Navbar = () => {
           <button onClick={handleLogout}>Logout</button>
           <Link to="/add-post">Add Post</Link>
           <Link to="/userBlog">My Blogs</Link>
+          <Link to="/users">List of users</Link>
         </div>
       </nav>
     </div>
