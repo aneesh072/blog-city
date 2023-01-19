@@ -31,7 +31,7 @@ const BlogPost = () => {
       </p>
       <p className="blog-category">{blog.category}</p>
 
-      <img src={blog.imageUrl} alt={blog.title} />
+      <img src={blog.image.url} alt={blog.title} />
 
       <p className="blog-description">{blog.description}</p>
     </div>

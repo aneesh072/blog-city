@@ -1,19 +1,27 @@
 const mongoose = require('mongoose');
-require('dotenv').config();
+const cloudinary = require('../utils/cloudinary');
 
 const Blog = require('../model/BlogModel');
 
 //create blog
 const createBlog = async (req, res) => {
-  const { title, description, author, category, imageUrl } = req.body;
+  const { title, description, author, category, image } = req.body;
   try {
     const user_id = req.user._id;
+    const result = await cloudinary.uploader.upload(image, {
+      folder: 'products',
+      // width: 300,
+      // crop: "scale"
+    });
     const blog = await Blog.create({
       title,
       description,
       author,
       category,
-      imageUrl,
+      image: {
+        public_id: result.public_id,
+        url: result.secure_url,
+      },
       user_id,
     });
     res.status(200).json(blog);
@@ -74,12 +82,37 @@ const updateBlog = async (req, res) => {
     return res.status(404).json({ error: 'No blog found' });
   }
 
-  const blog = await Blog.findByIdAndUpdate({ _id: id }, { ...req.body });
+  /*  const blog = await Blog.findByIdAndUpdate({ _id: id }, { ...req.body }); */
 
-  if (!blog) {
-    return res.status(404).json({ error: 'No blog found' });
+  const { title, description, author, category, image } = req.body;
+  try {
+    const user_id = req.user._id;
+    const result = await cloudinary.uploader.upload(image, {
+      folder: 'products',
+      // width: 300,
+      // crop: "scale"
+    });
+    const blog = await Blog.findByIdAndUpdate(
+      { _id: id },
+      {
+        title,
+        description,
+        author,
+        category,
+        image: {
+          public_id: result.public_id,
+          url: result.secure_url,
+        },
+        user_id,
+      }
+    );
+    if (!blog) {
+      return res.status(404).json({ error: 'No blog found' });
+    }
+    res.status(200).json(blog);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
   }
-  res.status(200).json(blog);
 };
 
 module.exports = {

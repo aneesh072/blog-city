@@ -7,7 +7,6 @@ const BlogForm = () => {
   const [category, setCategory] = useState('');
   const [author, setAuthor] = useState('');
   const [image, setImage] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
   const { user } = useAuthContext();
 
   useEffect(() => {
@@ -30,50 +29,41 @@ const BlogForm = () => {
     }
   }, [user]);
 
-  const postDetails = async (e) => {
-    e.preventDefault();
-
-    const data = new FormData();
-    data.append('file', image);
-    data.append('upload_preset', 'blog-city');
-    data.append('cloud_name', 'dwuo1i1ob');
-
-    const blog = { title, description, author, category, imageUrl };
-
-    await (`https://api.cloudinary.com/v1_1/dwuo1i1ob/upload`,
-    {
-      method: 'post',
-      body: data,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setImageUrl(data.url);
-      })
-      .then(
-        await fetch('/api/blogs', {
-          method: 'POST',
-          body: JSON.stringify(blog),
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${user.token}`,
-          },
-        })
-      )
-      .catch((err) => {
-        console.log(err);
-      });
-
-    /*     const response = fetch('/api/blogs', {
-      method: 'POST',
-      body: JSON.stringify(blog),
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${user.token}`,
-      },
-    }); */
+  //handle and convert it in base 64
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    setFileToBase(file);
+    console.log(file);
   };
 
-  console.log(image, imageUrl);
+  const setFileToBase = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImage(reader.result);
+    };
+  };
+
+  const postDetails = async (e) => {
+    e.preventDefault();
+    try {
+      const blog = { title, description, author, category, image };
+      console.log(blog);
+      await fetch('/api/blogs', {
+        method: 'POST',
+        body: JSON.stringify(blog),
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+   
+  };
+
+
 
   return (
     <div className="add-blog-form">
@@ -110,11 +100,7 @@ const BlogForm = () => {
         />
 
         <label>Add Image</label>
-        <input
-          type="file"
-          onChange={(e) => setImage(e.target.files[0])}
-          id="add-file-button"
-        />
+        <input type="file" onChange={handleImage} id="add-file-button" />
       </form>
 
       <button onClick={postDetails}>Upload</button>

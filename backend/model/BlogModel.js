@@ -20,9 +20,15 @@ const BlogSchema = new Schema(
       type: String,
       required: false,
     },
-    imageUrl: {
-      type: String,
-      required: false,
+    image: {
+      public_id: {
+        type: String,
+        required: true,
+      },
+      url: {
+        type: String,
+        required: true,
+      },
     },
     user_id: {
       type: String,

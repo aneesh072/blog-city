@@ -6,7 +6,7 @@ const BlogTile = ({ blog }) => {
     <Link to={`/blog/${blog._id}`} className="blog-link">
       <div className="blog">
         <div className="blog-image">
-          <img src={blog.imageUrl} alt="  " />
+          <img src={blog.image.url} alt="  " />
         </div>
 
         <div className="card-body">
