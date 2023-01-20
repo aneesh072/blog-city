@@ -39,7 +39,7 @@ const Home = () => {
     if (user) {
       fetchBlogs();
     }
-  }, [/* user, dispatch, blogs, currentPage, perPage */]);
+  }, [user, dispatch]);
 
   return (
     <div className="details">
@@ -49,8 +49,8 @@ const Home = () => {
           placeholder="Search..."
           onChange={(e) => setQuery(e.target.value)}
         />
-        <button>Search</button>
       </div>
+
       <div className="blog-list">
         {currentData
           .filter((post) => {
