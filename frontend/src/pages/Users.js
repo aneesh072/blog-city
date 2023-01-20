@@ -12,8 +12,13 @@ const Users = () => {
         },
       });
       const json = await response.json();
+      console.log(json);
       json.filter((fName) => {
-        return setName(fName.name);
+        if (user.email === fName.email) {
+          console.log(fName.name);
+          setName(fName.name);
+        }
+        return fName;
       });
     };
     if (user) {
@@ -21,9 +26,7 @@ const Users = () => {
     }
   }, [user]);
 
-  console.log(name);
-
-  return <div>Users</div>;
+  return <div>{name}</div>;
 };
 
 export default Users;

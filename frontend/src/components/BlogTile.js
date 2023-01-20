@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const BlogTile = ({ blog }) => {
+  console.log(blog.author);
   return (
     <Link to={`/blog/${blog._id}`} className="blog-link">
       <div className="blog">
@@ -12,12 +13,12 @@ const BlogTile = ({ blog }) => {
         <div className="card-body">
           <h4 className="card-title">{blog.title}</h4>
           <p className="card-text">{blog.description}</p>
-          <span>{blog.category}</span>
-          <h2>{blog.author}</h2>
+          <div>
+            <span>{blog.category}</span>
+            <p>Author here</p>
+          </div>
         </div>
-        <div>
-          <p>{blog.title}</p>
-        </div>
+        <div></div>
       </div>
     </Link>
   );

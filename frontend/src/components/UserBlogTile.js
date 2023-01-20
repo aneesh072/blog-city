@@ -30,31 +30,30 @@ const UserBlogTile = ({ blog }) => {
     }
   };
   return (
-    <Link to={`/blog/${blog._id}`} className="blog-link">
-      <div className="blog">
-        <div className="blog-image">
-          <img src={blog.image.url} alt="  " />
-        </div>
+    <div className="blog">
+      <div className="blog-image">
+        <img src={blog.image.url} alt="  " />
+      </div>
 
-        <div className="card-body">
+      <div className="card-body">
+        <Link to={`/blog/${blog._id}`} className="blog-link">
           <h4 className="card-title">{blog.title}</h4>
           <p className="card-text">{blog.description}</p>
           <span>{blog.category}</span>
-
-          <div className="blog-action">
-            <Link to={`/update-post/${blog._id}`}>
-              <button id="update">
-                <MdOutlineSystemUpdateAlt />
-              </button>
-            </Link>
-
-            <button id="delete" onClick={handleDelete}>
-              <BsFillTrashFill />
+        </Link>
+        <div className="blog-action">
+          <Link to={`/update-post/${blog._id}`}>
+            <button id="update">
+              <MdOutlineSystemUpdateAlt />
             </button>
-          </div>
+          </Link>
+
+          <button id="delete" onClick={handleDelete}>
+            <BsFillTrashFill />
+          </button>
         </div>
       </div>
-    </Link>
+    </div>
   );
 };
 

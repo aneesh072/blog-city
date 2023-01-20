@@ -35,9 +35,9 @@ const BlogPost = () => {
           <p className="blog-date">
             Posted on: <span>{Date.now()}</span>
           </p>
-          <p className="blog-category">{blog.category}</p>
-          <p className="blog-description">{blog.description}</p>{' '}
+          <p className="blog-category">{blog.category}</p>{' '}
           <img src={blog.image.url} alt={blog.image.public_id} />
+          <p className="blog-description">{blog.description}</p>
         </div>
       ) : null}
     </div>

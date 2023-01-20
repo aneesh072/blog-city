@@ -39,7 +39,7 @@ const Home = () => {
     if (user) {
       fetchBlogs();
     }
-  }, [user, dispatch, blogs, currentPage, perPage]);
+  }, [/* user, dispatch, blogs, currentPage, perPage */]);
 
   return (
     <div className="details">
