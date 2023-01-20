@@ -1,37 +1,27 @@
 @import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
 body {
-  background: #bdd882;
+  background-image: linear-gradient(
+    to right top,
+    #d5ebed,
+    #bcdde9,
+    #accce7,
+    #aab9e2,
+    #b2a3d4
+  );
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
   margin: 0 auto;
-  width: 100%;
+  width: 80%;
   font-family: 'Times New Roman', Times, serif;
 }
-.container {
-  background: #b284be;
-  width: 80%;
-  padding: 12px;
-  margin: 0 auto;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.container h1 {
-  font-family: cursive;
-  font-weight: bolder;
-  font-size: 6vh;
-  text-align: left;
-  margin-left: 20px;
-}
-
-.container a {
-  color: #333;
-  text-decoration: none;
-  margin-right: 10px;
-}
-
 .search input {
-  padding: 8px;
+  padding: 16px;
+  width: 100%;
+  border-radius: 20px;
+  border: none;
+  font-size: 16px;
 }
 
 .search {
@@ -39,7 +29,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding-top: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 .details {
   display: flex;
@@ -48,22 +39,17 @@ body {
   justify-content: center;
 }
 
-.search input {
-  height: 20px;
-  width: 40%;
-}
-
 .search button {
   padding: 10px;
   margin-left: 4px;
 }
 
 .blog-list {
+  width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
-  padding: 10px;
 }
 
 .blog {
@@ -79,7 +65,6 @@ body {
   border: 1px solid white;
   max-height: 420px;
   min-height: 420px !important;
-  position: relative;
 }
 
 .blog span {
@@ -98,12 +83,6 @@ body {
 
 .card-body {
   width: 100%;
-}
-
-.card-body span {
-  color: gold;
-  position: absolute;
-  bottom: 10px;
 }
 
 .blog img {
@@ -144,13 +123,16 @@ body {
 }
 
 .blog-post {
-  width: 80%;
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-  border: 1px solid;
   padding: 10px;
-  background: #dddddd;
+  background: #ffebad;
+  margin-top: 20px;
+  margin-bottom: 20px;
+
+  border-radius: 20px;
 }
 
 .blog-post h1 {
@@ -164,7 +146,6 @@ body {
   height: 400px;
   width: 100%;
   object-fit: contain;
-  background: #9688a7;
 }
 
 .blog-author span {
@@ -173,7 +154,9 @@ body {
 }
 
 .blog-category {
-  background-color: #007bff;
+  background-color: #a69bd1;
+  font-size: 18px;
+  color: white;
   width: fit-content;
   padding: 5px 12px 5px 12px;
   border-radius: 20px;
@@ -183,23 +166,20 @@ body {
   text-align: justify;
   font-size: 20px;
   word-spacing: 4px;
+  background: whitesmoke;
+  border-radius: 20px;
+  padding: 20px;
 }
 
 @media screen and (max-width: 1300px) {
   .blog-list {
     align-items: center;
     justify-content: center;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media screen and (max-width: 880px) {
-  .blog-list {
-    align-items: center;
-    justify-content: center;
-    grid-template-columns: repeat(2, 1fr);
-  }
-
   .container {
     flex-direction: column;
   }
@@ -222,7 +202,7 @@ body {
   }
 
   .blog img {
-    background-color: #b284be;
+    background-color: #ffebad;
     min-width: 80% !important;
     margin-top: 10px;
     object-fit: fill !important;
@@ -235,12 +215,15 @@ body {
 }
 
 .add-blog-form {
+  margin-top: 20px !important;
+  margin-bottom: 20px !important;
+  border-radius: 20px;
   padding: 12px;
-  background: #9688a7;
+  background: #ffebad;
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 100%;
   display: flex;
   flex-direction: column;
   font-family: 'Times New Roman', Times, serif;
@@ -255,22 +238,39 @@ body {
 .add-blog-form textarea {
   font-family: 'Times New Roman', Times, serif;
   font-size: larger;
+  border-radius: 20px;
+  border: none;
+  max-width: 100%;
+  min-width: 100%;
 }
 
 .add-blog-form input {
   font-family: 'Times New Roman', Times, serif;
   font-size: larger;
   padding: 10px;
+  border-radius: 20px;
   border: none;
 }
 
 #add-file-button {
-  padding: 0;
+  width: fit-content;
+  padding: 4px;
 }
 
 .add-blog-form button {
+  background: #a69bd1;
+  border: none;
+  border-radius: 20px;
+  color: white;
   padding: 10px;
-  width: 70px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 18px;
+  width: 80%;
+  cursor: pointer;
+}
+.add-blog-form button:hover {
+  background: #5633de;
 }
 
 .add-blog-form form {
@@ -361,8 +361,7 @@ form .credits {
 .blog-action {
   display: flex;
   gap: 12px;
-  position: absolute;
-  bottom: 10px;
+
   right: 0;
   margin-right: 20px;
 }
@@ -393,4 +392,110 @@ form .credits {
   background-color: #bdd882;
 }
 
-/* demo */
+* {
+  box-sizing: border-box;
+}
+
+.nav {
+  height: 120px;
+  width: 100%;
+  background-color: #ffebad;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  margin: 0 auto;
+  border-radius: 0px 0px 20px 20px;
+  padding: 20px;
+}
+
+.nav > .nav-title > a {
+  text-decoration: none;
+  font-weight: bolder;
+  display: inline-block;
+  font-size: 4vh;
+  color: #cf79dc;
+  
+}
+
+
+.nav > .nav-btn {
+  display: none;
+}
+
+.nav > .nav-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  font-size: 18px;
+}
+
+.nav > .nav-links > a {
+  display: inline-block;
+  padding: 13px 10px 13px 10px;
+  text-decoration: none;
+  color: #333;
+  border-radius: 20px;
+}
+
+.nav > .nav-links > a:hover {
+  background-color: #cf79dc;
+}
+
+.nav > #nav-check {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .nav {
+    justify-content: space-between;
+  }
+
+  .nav > .nav-btn {
+    display: inline-block;
+
+    right: 0px;
+    top: 0px;
+  }
+  .nav > .nav-btn > label {
+    display: inline-block;
+    width: 50px;
+    height: 50px;
+    padding: 13px;
+  }
+  .nav > .nav-btn > label:hover,
+  .nav #nav-check:checked ~ .nav-btn > label {
+    background-color: #ffebad;
+  }
+  .nav > .nav-btn > label > span {
+    display: block;
+    width: 25px;
+    height: 10px;
+    border-top: 2px solid #333;
+  }
+  .nav > .nav-links {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #ffebad;
+    color: #333;
+    text-align: center;
+    transition: all 0.3s ease-in;
+    overflow-y: hidden;
+    top: 82px;
+    left: 0px;
+  }
+  .nav > .nav-links > a {
+    display: block;
+    width: 100%;
+  }
+  .nav > #nav-check:not(:checked) ~ .nav-links {
+    height: 0px;
+  }
+  .nav > #nav-check:checked ~ .nav-links {
+    overflow-y: auto;
+  }
+}

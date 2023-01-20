@@ -10,19 +10,28 @@ const Navbar = () => {
   };
 
   return (
-    <div className="container">
-      <Link id="logo" to="/">
-        <h1>Blog-City</h1>
-      </Link>
-      <nav>
-        <div className="actions">
-          <button onClick={handleLogout}>Logout</button>
-          <Users />
-          <Link to="/add-post">Add Post</Link>
-          <Link to="/userBlog">My Blogs</Link>
-          <Link to="/users">List of users</Link>
-        </div>
-      </nav>
+    <div class="nav">
+      <input type="checkbox" id="nav-check" />
+
+      <div class="nav-title">
+        <Link to="/">Blog City</Link>{' '}
+      </div>
+
+      <div class="nav-btn">
+        <label for="nav-check">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
+      </div>
+
+      <div class="nav-links">
+        <Users />
+        <Link to="/add-post">Add Post</Link>
+        <Link to="/userBlog">My Blogs</Link>
+
+        <Link onClick={handleLogout}>Logout</Link>
+      </div>
     </div>
   );
 };
@@ -50,7 +59,7 @@ const Users = () => {
     }
   }, [user]);
 
-  return <h2>{name}</h2>;
+  return <h2 style={{ color: '#cf79dc', fontSize: '28px' }}>{name}</h2>;
 };
 
 export default Navbar;

@@ -10,7 +10,6 @@ import { useAuthContext } from './hooks/useAuthContext';
 import UserBlogList from './components/UserBlogList';
 import UpdateBlog from './components/UpdateBlog';
 
-
 const App = () => {
   const { user } = useAuthContext();
 
@@ -49,7 +48,6 @@ const App = () => {
           path="/update-post/:blogId"
           element={user ? <UpdateBlog /> : <Navigate to="/login" />}
         ></Route>
-    
       </Routes>
     </BrowserRouter>
   );

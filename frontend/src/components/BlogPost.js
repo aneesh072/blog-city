@@ -3,6 +3,9 @@ import { useParams } from 'react-router';
 import { useAuthContext } from '../hooks/useAuthContext';
 import axios from 'axios';
 
+//date fns
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+
 const BlogPost = () => {
   const [blog, setBlog] = useState(null);
   const params = useParams();
@@ -23,6 +26,7 @@ const BlogPost = () => {
 
     fetchBlog();
   }, [params.blogId, user]);
+  console.log(blog);
 
   return (
     <div className="blog-post">
@@ -33,7 +37,13 @@ const BlogPost = () => {
             By: <span>{blog.author}</span>
           </p>
           <p className="blog-date">
-            Posted on: <span>{Date.now()}</span>
+            Posted on:{' '}
+            <span>
+              {' '}
+              {formatDistanceToNow(new Date(blog.createdAt), {
+                addSuffix: true,
+              })}
+            </span>
           </p>
           <p className="blog-category">{blog.category}</p>{' '}
           <img src={blog.image.url} alt={blog.image.public_id} />
