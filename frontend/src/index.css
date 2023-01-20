@@ -282,7 +282,7 @@ body {
 
 .signup {
   background-image: url('./assets/lav.jpeg');
-  background-blend-mode: luminosity;
+  background-size: cover;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -294,10 +294,12 @@ body {
 
 .signup h1 {
   font-size: 8vh;
-  color: rgb(0, 0, 0);
+  color: #d6f4f9;
   font-family: 'Lobster', cursive;
-  position: fixed;
-  top: 0;
+  text-align: center;
+  background: #333;
+  padding: 20px;
+  border-radius: 20px;
 }
 
 .signup form {
@@ -310,8 +312,7 @@ body {
   justify-content: center;
   font-family: 'Times New Roman', Times, serif;
   font-size: 20px;
-  gap: 10px;
-  position: fixed;
+  position: relative;
 }
 
 form .credits {
@@ -341,6 +342,10 @@ form .credits {
   border-radius: 10px;
   cursor: pointer;
   margin-top: 10px;
+}
+
+.signup a {
+  color: white;
 }
 
 .option {
@@ -388,6 +393,4 @@ form .credits {
   background-color: #bdd882;
 }
 
-
 /* demo */
-

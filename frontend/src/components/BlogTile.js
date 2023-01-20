@@ -15,6 +15,9 @@ const BlogTile = ({ blog }) => {
           <span>{blog.category}</span>
           <h2>{blog.author}</h2>
         </div>
+        <div>
+          <p>{blog.title}</p>
+        </div>
       </div>
     </Link>
   );
