@@ -9,6 +9,7 @@ const BlogForm = () => {
   const [image, setImage] = useState('');
   const { user } = useAuthContext();
 
+  const [name, setName] = useState([]);
   useEffect(() => {
     const fetchUsers = async () => {
       const response = await fetch('/api/user/users', {
@@ -17,11 +18,12 @@ const BlogForm = () => {
         },
       });
       const json = await response.json();
-      json.map((names) => {
-        if (names.email === user.email) {
-          setAuthor(names.name);
+      json.filter((fName) => {
+        if (user.email === fName.email) {
+          setName(fName.name);
+          setAuthor(fName.name);
         }
-        return names;
+        return fName;
       });
     };
     if (user) {
@@ -60,10 +62,9 @@ const BlogForm = () => {
     } catch (error) {
       console.log(error);
     }
-   
   };
 
-
+  console.log(author);
 
   return (
     <div className="add-blog-form">

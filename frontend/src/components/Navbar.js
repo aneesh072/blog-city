@@ -38,10 +38,8 @@ const Users = () => {
         },
       });
       const json = await response.json();
-      console.log(json);
       json.filter((fName) => {
         if (user.email === fName.email) {
-          console.log(fName.name);
           setName(fName.name);
         }
         return fName;
