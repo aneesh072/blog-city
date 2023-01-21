@@ -82,8 +82,6 @@ const updateBlog = async (req, res) => {
     return res.status(404).json({ error: 'No blog found' });
   }
 
-  /*  const blog = await Blog.findByIdAndUpdate({ _id: id }, { ...req.body }); */
-
   const { title, description, author, category, image } = req.body;
   try {
     const user_id = req.user._id;

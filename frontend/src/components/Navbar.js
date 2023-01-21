@@ -10,22 +10,22 @@ const Navbar = () => {
   };
 
   return (
-    <div class="nav">
+    <div className="nav">
       <input type="checkbox" id="nav-check" />
 
-      <div class="nav-title">
+      <div className="nav-title">
         <Link to="/">Blog City</Link>{' '}
       </div>
 
-      <div class="nav-btn">
-        <label for="nav-check">
+      <div className="nav-btn">
+        <label htmlFor="nav-check">
           <span></span>
           <span></span>
           <span></span>
         </label>
       </div>
 
-      <div class="nav-links">
+      <div className="nav-links">
         <Users />
         <Link to="/add-post">Add Post</Link>
         <Link to="/userBlog">My Blogs</Link>
@@ -59,7 +59,19 @@ const Users = () => {
     }
   }, [user]);
 
-  return <h2 style={{ color: '#cf79dc', fontSize: '28px' }}>{name}</h2>;
+  return (
+    <h2
+      style={{
+        color: 'white',
+        fontSize: '28px',
+        background: 'gray',
+        padding: '13px',
+        borderRadius: '40px',
+      }}
+    >
+      Hello {name}
+    </h2>
+  );
 };
 
 export default Navbar;

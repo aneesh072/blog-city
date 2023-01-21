@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useAuthContext } from '../hooks/useAuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const BlogForm = () => {
   const [title, setTitle] = useState('');
@@ -8,6 +9,8 @@ const BlogForm = () => {
   const [author, setAuthor] = useState('');
   const [image, setImage] = useState('');
   const { user } = useAuthContext();
+
+  const navigate = useNavigate();
 
   const [name, setName] = useState([]);
   useEffect(() => {
@@ -62,6 +65,7 @@ const BlogForm = () => {
     } catch (error) {
       console.log(error);
     }
+    navigate('/');
   };
 
   console.log(author);
@@ -101,7 +105,12 @@ const BlogForm = () => {
         />
 
         <label>Add Image</label>
-        <input type="file" onChange={handleImage} id="add-file-button" />
+        <input
+          type="file"
+          accept="image/png, image/jpeg"
+          onChange={handleImage}
+          id="add-file-button"
+        />
       </form>
 
       <button onClick={postDetails}>Upload</button>

@@ -15,10 +15,10 @@ const BlogTile = ({ blog }) => {
           <p className="card-text">{blog.description}</p>
           <div>
             <span>{blog.category}</span>
-            <p>{blog.author}</p>
+
+            <p style={{ marginTop: '40px', color: 'gray' }}>{blog.author}</p>
           </div>
         </div>
-        <div></div>
       </div>
     </Link>
   );

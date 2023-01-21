@@ -10,6 +10,8 @@ const UpdateBlog = () => {
   const [author, setAuthor] = useState('');
   const [image, setImage] = useState('');
 
+  const [name, setName] = useState([]);
+
   const { user } = useAuthContext();
   const { dispatch } = useBlogContext();
 
@@ -31,8 +33,24 @@ const UpdateBlog = () => {
         setCategory(json.category);
       }
     };
+    const fetchUsers = async () => {
+      const response = await fetch('/api/user/users', {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+      const json = await response.json();
+      json.filter((fName) => {
+        if (user.email === fName.email) {
+          setName(fName.name);
+          setAuthor(fName.name);
+        }
+        return fName;
+      });
+    };
     if (user) {
       fetchBlog();
+      fetchUsers();
     }
   }, [params.blogId, dispatch, user]);
 
@@ -105,7 +123,12 @@ const UpdateBlog = () => {
         />
 
         <label>Add Image</label>
-        <input type="file" onChange={handleImage} id="add-file-button" />
+        <input
+          type="file"
+          accept="image/png, image/jpeg"
+          onChange={handleImage}
+          id="add-file-button"
+        />
       </form>
 
       <button onClick={postDetails}>Update</button>

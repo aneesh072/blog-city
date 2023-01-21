@@ -45,11 +45,11 @@ body {
 }
 
 .blog-list {
-  width: 100%;
+  width: auto;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 80px;
 }
 
 .blog {
@@ -83,6 +83,7 @@ body {
 
 .card-body {
   width: 100%;
+  position: relative;
 }
 
 .blog img {
@@ -242,6 +243,7 @@ body {
   border: none;
   max-width: 100%;
   min-width: 100%;
+  padding: 10px;
 }
 
 .add-blog-form input {
@@ -282,8 +284,6 @@ body {
 
 .signup {
   background-image: url('./assets/lav.jpeg');
-  background-size: cover;
-  width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -345,7 +345,8 @@ form .credits {
 }
 
 .signup a {
-  color: white;
+  color: red;
+  font-weight: bolder;
 }
 
 .option {
@@ -361,8 +362,8 @@ form .credits {
 .blog-action {
   display: flex;
   gap: 12px;
-
-  right: 0;
+  position: absolute;
+  margin-top: 40px;
   margin-right: 20px;
 }
 
@@ -416,9 +417,7 @@ form .credits {
   display: inline-block;
   font-size: 4vh;
   color: #cf79dc;
-  
 }
-
 
 .nav > .nav-btn {
   display: none;
