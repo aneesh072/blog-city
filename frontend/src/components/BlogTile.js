@@ -16,7 +16,7 @@ const BlogTile = ({ blog }) => {
           <div>
             <span>{blog.category}</span>
 
-            <p style={{ marginTop: '40px', color: 'gray' }}>{blog.author}</p>
+            <p style={{ color: 'gray' }}>{blog.author}</p>
           </div>
         </div>
       </div>

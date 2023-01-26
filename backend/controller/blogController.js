@@ -80,7 +80,7 @@ const updateBlog = async (req, res) => {
 
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: 'No blog found' });
-  }
+  }Z
 
   const { title, description, author, category, image } = req.body;
   try {
