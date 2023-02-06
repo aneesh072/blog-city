@@ -9,6 +9,7 @@ Features:
 4. User dashboard to view blogs only written by user
 5. Delete and Update the user blog
 6. Pagination through react pagination
+7. Responsive
 
 
 ![screencapture-localhost-3000-2023-01-26-17_07_19](https://user-images.githubusercontent.com/25345732/214769650-6ac45aa9-a043-4ebc-9ff3-10bbb261f78a.png)
