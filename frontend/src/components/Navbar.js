@@ -30,7 +30,7 @@ const Navbar = () => {
         <Link to="/add-post">Add Post</Link>
         <Link to="/userBlog">My Blogs</Link>
 
-        <Link onClick={handleLogout}>Logout</Link>
+        <Link onClick={handleLogout} style={{border: '2px solid green'}}>Logout</Link>
       </div>
     </div>
   );

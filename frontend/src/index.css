@@ -8,12 +8,12 @@ body {
     #aab9e2,
     #b2a3d4
   );
+
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
+  background-size: contain;
   margin: 0 auto;
-  width: 80%;
   font-family: 'Times New Roman', Times, serif;
 }
 .search input {
@@ -33,6 +33,8 @@ body {
   padding-bottom: 20px;
 }
 .details {
+  width: 80%;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -124,7 +126,7 @@ body {
 }
 
 .blog-post {
-  width: 100%;
+  width: 80%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -224,7 +226,7 @@ body {
   margin: 0 auto;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 80%;
   display: flex;
   flex-direction: column;
   font-family: 'Times New Roman', Times, serif;
@@ -284,6 +286,8 @@ body {
 
 .signup {
   background-image: url('./assets/lav.jpeg');
+  min-width: 100%;
+  object-fit: contain;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -497,4 +501,14 @@ form .credits {
   .nav > #nav-check:checked ~ .nav-links {
     overflow-y: auto;
   }
+}
+
+.credentials {
+  background-color: #a69bd1;
+  margin-top: 10px;
+  width: 400px;
+  border-radius: 10px;
+  padding: 10px;
+  text-align: center;
+  font-size: 20px;
 }

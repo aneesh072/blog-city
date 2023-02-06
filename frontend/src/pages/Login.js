@@ -45,6 +45,11 @@ const Login = () => {
           </p>
         </form>
       </div>
+      <div className="credentials">
+        <p>To test</p>
+        <p>test@gmail.com</p>
+        <p>Password@123</p>
+      </div>
     </div>
   );
 };
