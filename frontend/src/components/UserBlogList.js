@@ -26,11 +26,14 @@ const UserBlogList = () => {
 
   useEffect(() => {
     const fetchBlogs = async () => {
-      const response = await fetch('/api/blogs/myBlogs', {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const response = await fetch(
+        'https://blog-city-backend.onrender.com/api/blogs/myBlogs',
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
       const json = await response.json();
       if (response.ok) {
         dispatch({ type: 'SET_BLOG', payload: json });

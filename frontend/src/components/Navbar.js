@@ -41,11 +41,14 @@ const Users = () => {
   const [name, setName] = useState([]);
   useEffect(() => {
     const fetchUsers = async () => {
-      const response = await fetch('/api/user/users', {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const response = await fetch(
+        'https://blog-city-backend.onrender.com/api/user/users',
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
       const json = await response.json();
       json.filter((fName) => {
         if (user.email === fName.email) {

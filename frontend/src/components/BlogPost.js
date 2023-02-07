@@ -14,11 +14,14 @@ const BlogPost = () => {
   useEffect(() => {
     const fetchBlog = async () => {
       await axios
-        .get('/api/blogs/' + params.blogId, {
-          headers: {
-            Authorization: `Bearer ${user.token}`,
-          },
-        })
+        .get(
+          'https://blog-city-backend.onrender.com/api/blogs/' + params.blogId,
+          {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          }
+        )
         .then((res) => {
           setBlog(res.data);
         });

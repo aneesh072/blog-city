@@ -20,11 +20,14 @@ const UpdateBlog = () => {
 
   useEffect(() => {
     const fetchBlog = async () => {
-      const response = await fetch('/api/blogs/' + params.blogId, {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const response = await fetch(
+        'https://blog-city-backend.onrender.com/api/blogs/' + params.blogId,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
 
       const json = await response.json();
       if (response.ok) {
@@ -34,11 +37,14 @@ const UpdateBlog = () => {
       }
     };
     const fetchUsers = async () => {
-      const response = await fetch('/api/user/users', {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const response = await fetch(
+        'https://blog-city-backend.onrender.com/api/user/users',
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
       const json = await response.json();
       json.filter((fName) => {
         if (user.email === fName.email) {
@@ -74,14 +80,17 @@ const UpdateBlog = () => {
     try {
       const blog = { title, description, author, category, image };
       console.log(blog);
-      await fetch('/api/blogs/' + params.blogId, {
-        method: 'PATCH',
-        body: JSON.stringify(blog),
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      await fetch(
+        'https://blog-city-backend.onrender.com/api/blogs/' + params.blogId,
+        {
+          method: 'PATCH',
+          body: JSON.stringify(blog),
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
     } catch (error) {
       console.log(error);
     }

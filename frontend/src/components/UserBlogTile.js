@@ -16,12 +16,15 @@ const UserBlogTile = ({ blog }) => {
       return;
     }
 
-    const response = await fetch('/api/blogs/' + blog._id, {
-      method: 'DELETE',
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-    });
+    const response = await fetch(
+      'https://blog-city-backend.onrender.com/api/blogs/' + blog._id,
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    );
 
     const json = await response.json();
 
