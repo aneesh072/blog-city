@@ -22,7 +22,7 @@ mongoose.set('strictQuery', false);
 mongoose
   .connect(process.env.MONGO_URI)
   .then(() => {
-    app.listen(process.env.PORT, () => {
+    app.listen(process.env.PORT || 4000, () => {
       console.log('SUCCESSFULLY CONNECTED TO THE PORT');
     });
   })
